@@ -20,8 +20,7 @@
                 <Label Text="ID"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <Entry x:Name="ID"
-                       Text="{Binding UserID}"
+                <Entry Text="{Binding UserID}"
                        Placeholder="아이디를 입력하세요"/>
             </Grid>
 
@@ -31,8 +30,7 @@
                 <Label Text="Name"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
-                <Entry x:Name="NAME"
-                       Text="{Binding UserName}"
+                <Entry Text="{Binding UserName}"
                        Placeholder="이름을 입력하세요"/>
             </Grid>
 
@@ -76,8 +74,7 @@
                          VerticalOptions="Center"
                          HorizontalOptions="Center"
                          Orientation="Horizontal">
-                <Button x:Name="REGIST"
-                        Text="등록"
+                <Button Text="등록"
                         Command="{Binding RegistCommand}"/>
 
                 <Button x:Name="MODIFY"
