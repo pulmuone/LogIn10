@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:LogIn10.Models"
+             xmlns:vm="clr-namespace:LogIn10.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+			 ios:Page.UseSafeArea="True"
+             x:Class="LogIn10.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel x:Name="vm" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="40, 40, 40, 40, 40, 40, *"
+              ColumnDefinitions="80, *">
+            <Grid Grid.Row="0" Grid.Column="0"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center">
+                <Label Text="ID"/>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Entry x:Name="ID"
+                       Text="{Binding UserID}"
+                       Placeholder="아이디를 입력하세요"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center">
+                <Label Text="Name"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Entry x:Name="NAME"
+                       Text="{Binding UserName}"
+                       Placeholder="이름을 입력하세요"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center">
+                <Label Text="E-Mail"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Entry x:Name="EMAIL"
+                       Text="{Binding Email}"
+                       Placeholder="이메일을 입력하세요"
+                       Keyboard="Email"/>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="0"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center">
+                <Label Text="Tel"/>
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Entry x:Name="TEL"
+                       Text="{Binding Tel}"
+                       Placeholder="전화번호를 입력하세요"
+                       Keyboard="Telephone"/>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="0"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center">
+                <Label Text="등록일"/>
+            </Grid>
+            <Grid Grid.Row="4" Grid.Column="1">
+                <DatePicker x:Name="DTREGIST"
+                            Date="{Binding RegistDate}"
+                            Format="yyyy-MM-dd"
+                            HorizontalOptions="FillAndExpand"/>
+            </Grid>
+
+            <StackLayout Grid.Row="5" Grid.ColumnSpan="2"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Orientation="Horizontal">
+                <Button x:Name="REGIST"
+                        Text="등록"
+                        Command="{Binding RegistCommand}"/>
+
+                <Button x:Name="MODIFY"
+                        Text="수정"
+                        Command="{Binding ModifyCommand}"/>
+
+                <Button x:Name="DELETE"
+                        Text="삭제"
+                        Command="{Binding DeleteCommand}"/>
+            </StackLayout>
+            <Grid Grid.Row="6" Grid.ColumnSpan="2">
+                <CollectionView x:Name="collection"
+                                ItemsSource="{Binding UserModels}"
+                                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:UserModel">
+                            <Grid ColumnDefinitions="50, *, 50, 50, 100">
+                                <Label Grid.Column="0" Text="{Binding UserID}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding UserName}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="{Binding Email}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="3" Text="{Binding Tel}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="4" Text="{Binding RegistDate}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
